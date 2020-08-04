@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar></Navbar>
+    <Sidenav></Sidenav>
+    <HelloWorld />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Sidenav from "./components/SideNav";
+import Navbar from "./components/Navbar.vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import M from "materialize-css";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    Navbar,
+    Sidenav,
+  },
+  mounted() {
+    M.AutoInit();
+  },
+};
 </script>
 
 <style>
@@ -23,6 +31,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
