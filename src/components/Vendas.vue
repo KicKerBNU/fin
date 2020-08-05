@@ -20,11 +20,7 @@
       </div>
       <div>
         <a class="btn disabled">Cancelar</a>
-        <a
-          class="btn waves-effect waves-light white-text"
-          type="submit"
-          name="action"
-        >
+        <a class="btn waves-effect waves-light white-text" type="submit" name="action">
           Confirmar
           <i class="material-icons right">send</i>
         </a>
@@ -41,7 +37,7 @@
         </tr>
       </thead>
 
-      <tbody v-for="venda in listaVenda" :key="venda.valor">
+      <tbody v-for="venda in listaVenda" :key="venda.id">
         <tr>
           <td>{{ venda.data }}</td>
           <td>{{ venda.valor }}</td>
@@ -56,9 +52,7 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Valor total inverno</span>
-              <p>
-                12000
-              </p>
+              <p>{{valorInverno}}</p>
             </div>
           </div>
         </div>
@@ -67,9 +61,7 @@
           <div class="card grey darken-3">
             <div class="card-content white-text">
               <span class="card-title">Valor total verao</span>
-              <p>
-                12000
-              </p>
+              <p>{{valorVerao}}</p>
             </div>
           </div>
         </div>
@@ -79,21 +71,17 @@
         <div class="col s5">
           <div class="card blue-grey darken-4">
             <div class="card-content white-text">
-              <span class="card-title">Comissao total inverno</span>
-              <p>
-                12000
-              </p>
+              <span class="card-title">Comissao inverno</span>
+              <p>{{comissaoInverno}}</p>
             </div>
           </div>
         </div>
 
         <div class="col s5">
-          <div class="card  blue-grey lighten-2">
+          <div class="card blue-grey lighten-2">
             <div class="card-content white-text">
-              <span class="card-title">Comissao total verao</span>
-              <p>
-                12000
-              </p>
+              <span class="card-title">Comissao verao</span>
+              <p>{{comissaoVerao}}</p>
             </div>
           </div>
         </div>
@@ -102,9 +90,7 @@
           <div class="card teal darken-4">
             <div class="card-content white-text">
               <span class="card-title">Valor total acumulado</span>
-              <p>
-                12000
-              </p>
+              <p>{{valorTotal}}</p>
             </div>
           </div>
         </div>
@@ -114,38 +100,70 @@
 </template>
 
 <script>
-  export default {
-    name: "HelloWorld",
-    data() {
-      return {
-        msg: "Lançamento de vendas",
-        listaVenda: [
-          {
-            data: "03/08/2020",
-            valor: 100,
-            valorInverno: 50,
-            valorVerao: 50,
-          },
-        ],
-      };
+import axios from "axios";
+export default {
+  name: "Vendas",
+  data() {
+    return {
+      msg: "Lançamento de vendas",
+      listaVenda: [],
+      valorTotal: null,
+      valorInverno: null,
+      valorVerao: null,
+      comissaoVerao: null,
+      comissaoInverno: null,
+    };
+  },
+  mounted() {
+    this.atualizarValores();
+  },
+  methods: {
+    atualizarValores() {
+      axios.get("http://localhost:3000/vendas").then((resposta) => {
+        this.listaVenda = resposta.data;
+
+        this.valorTotal = this.listaVenda.reduce(valorTotal, 0);
+        function valorTotal(total, item) {
+          return total + item.valor;
+        }
+
+        this.valorInverno = this.listaVenda.reduce(valorTotalInverno, 0);
+        function valorTotalInverno(total, item) {
+          return total + item.valorInverno;
+        }
+
+        this.valorVerao = this.listaVenda.reduce(valorTotalVerao, 0);
+        function valorTotalVerao(total, item) {
+          return total + item.valorVerao;
+        }
+
+        this.comissaoVerao = this.valorVerao * 0.13;
+        this.comissaoInverno = this.valorInverno * 0.13;
+      });
     },
-  };
+  },
+  computed: {
+    atualizaLista() {
+      return this.valorTotal;
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
 </style>

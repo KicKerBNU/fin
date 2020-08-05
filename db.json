@@ -1,0 +1,18 @@
+{
+  "vendas": [
+    {
+      "id": 1,
+      "data": "03/08/2020",
+      "valor": 50,
+      "valorInverno": 25,
+      "valorVerao": 25
+    },
+    {
+      "id": 2,
+      "data": "04/08/2020",
+      "valor": 200,
+      "valorInverno": 100,
+      "valorVerao": 100
+    }
+  ]
+}

@@ -2,19 +2,19 @@
   <div id="app">
     <Navbar></Navbar>
     <Sidenav></Sidenav>
-    <HelloWorld />
+    <Vendas></Vendas>
   </div>
 </template>
 
 <script>
 import Sidenav from "./components/SideNav";
 import Navbar from "./components/Navbar.vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Vendas from "./components/Vendas.vue";
 import M from "materialize-css";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Vendas,
     Navbar,
     Sidenav,
   },
