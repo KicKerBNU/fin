@@ -1,29 +1,33 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+    <div id="nav">
+      <Navbar></Navbar>
+      <router-link to="/">Home</router-link>
+      <router-link to="/fluxo">Fluxo</router-link>
+      <router-link to="/resumo">Resumo</router-link>
+    </div>
+    <router-view />
     <div class="container">
       <Sidenav></Sidenav>
-      <Vendas></Vendas>
     </div>
   </div>
 </template>
 
 <script>
-  import Sidenav from "./components/SideNav";
-  import Navbar from "./components/Navbar.vue";
-  import Vendas from "./components/Vendas.vue";
-  import M from "materialize-css";
-  export default {
-    name: "App",
-    components: {
-      Vendas,
-      Navbar,
-      Sidenav,
-    },
-    mounted() {
-      M.AutoInit();
-    },
-  };
+import Sidenav from "./components/SideNav";
+import Navbar from "./components/Navbar.vue";
+
+import M from "materialize-css";
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    Sidenav,
+  },
+  mounted() {
+    M.AutoInit();
+  },
+};
 </script>
 
 <style></style>

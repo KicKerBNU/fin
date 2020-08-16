@@ -1,6 +1,6 @@
 <template>
-  <div class="hello container">
-    <h3>{{ msg }}</h3>
+  <div class="container">
+    <h5 class="center">{{titulo}}</h5>
     <div class="row">
       <div class="input-field col s3">
         <input id="data_caixa" type="text" class="validate" />
@@ -18,12 +18,18 @@
         <input id="valor_verao" type="text" class="validate" />
         <label for="valor_verao">Valor venda verao</label>
       </div>
-      <div>
-        <a class="btn disabled">Cancelar</a>
-        <a class="btn waves-effect waves-light white-text" type="submit" name="action">
-          Confirmar
-          <i class="material-icons right">send</i>
-        </a>
+    </div>
+    <div>
+      <div class="row">
+        <div class="right-align col s12">
+          <p>
+            <a class="btn disabled">Cancelar</a>
+            <a class="btn waves-effect waves-light white-text">
+              Confirmar
+              <i class="material-icons right">send</i>
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -52,7 +58,7 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Valor total inverno</span>
-              <p>{{valorInverno}}</p>
+              <p>{{ valorInverno }}</p>
             </div>
           </div>
         </div>
@@ -61,7 +67,7 @@
           <div class="card grey darken-3">
             <div class="card-content white-text">
               <span class="card-title">Valor total verao</span>
-              <p>{{valorVerao}}</p>
+              <p>{{ valorVerao }}</p>
             </div>
           </div>
         </div>
@@ -72,7 +78,7 @@
           <div class="card blue-grey darken-4">
             <div class="card-content white-text">
               <span class="card-title">Comissao inverno</span>
-              <p>{{comissaoInverno}}</p>
+              <p>{{ comissaoInverno }}</p>
             </div>
           </div>
         </div>
@@ -81,7 +87,7 @@
           <div class="card blue-grey lighten-2">
             <div class="card-content white-text">
               <span class="card-title">Comissao verao</span>
-              <p>{{comissaoVerao}}</p>
+              <p>{{ comissaoVerao }}</p>
             </div>
           </div>
         </div>
@@ -90,7 +96,7 @@
           <div class="card teal darken-4">
             <div class="card-content white-text">
               <span class="card-title">Valor total acumulado</span>
-              <p>{{valorTotal}}</p>
+              <p>{{ valorTotal }}</p>
             </div>
           </div>
         </div>
@@ -105,7 +111,7 @@ export default {
   name: "Vendas",
   data() {
     return {
-      msg: "Lançamento de vendas",
+      titulo: "Lançamento de vendas",
       listaVenda: [],
       valorTotal: null,
       valorInverno: null,
