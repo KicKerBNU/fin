@@ -1,60 +1,57 @@
 <template>
   <div class="container">
     <h5 class="center">{{titulo}}</h5>
-    <div class="row">
-      <div class="input-field col s3">
-        <input id="data_caixa" type="text" class="validate" />
-        <label for="data_caixa">Data</label>
-      </div>
-      <div class="input-field col s3">
-        <input id="valor_caixa" type="text" class="validate" />
-        <label for="valor_caixa">Valor Total</label>
-      </div>
-      <div class="input-field col s3">
-        <input id="valor_inverno" type="text" class="validate" />
-        <label for="valor_inverno">Valor venda inverno</label>
-      </div>
-      <div class="input-field col s3">
-        <input id="valor_verao" type="text" class="validate" />
-        <label for="valor_verao">Valor venda verao</label>
-      </div>
-    </div>
-    <div>
+    <div class="content">
       <div class="row">
-        <div class="right-align col s12">
-          <p>
-            <a class="btn disabled">Cancelar</a>
-            <a class="btn waves-effect waves-light white-text">
-              Confirmar
-              <i class="material-icons right">send</i>
-            </a>
-          </p>
+        <div class="input-field col s3">
+          <input id="data_caixa" type="text" class="validate" />
+          <label for="data_caixa">Data</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="valor_caixa" type="text" class="validate" />
+          <label for="valor_caixa">Valor Total</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="valor_inverno" type="text" class="validate" />
+          <label for="valor_inverno">Valor venda inverno</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="valor_verao" type="text" class="validate" />
+          <label for="valor_verao">Valor venda verao</label>
         </div>
       </div>
+      <div class="right-align col s12">
+        <p>
+          <a class="btn-flat">Limpar</a>
+          <a class="btn waves-effect waves-light">Confirmar</a>
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <table class="highlight" v-show="listaVenda.length">
+        <thead>
+          <tr>
+            <th>DATA</th>
+            <th>VALOR</th>
+            <th>VALOR INVERNO</th>
+            <th>VALOR VERAO</th>
+          </tr>
+        </thead>
+
+        <tbody v-for="venda in listaVenda" :key="venda.id">
+          <tr>
+            <td>{{ venda.data }}</td>
+            <td>{{ venda.valor }}</td>
+            <td>{{ venda.valorInverno }}</td>
+            <td>{{ venda.valorVerao }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <table class="striped">
-      <thead>
-        <tr>
-          <th>DATA</th>
-          <th>VALOR</th>
-          <th>VALOR INVERNO</th>
-          <th>VALOR VERAO</th>
-        </tr>
-      </thead>
-
-      <tbody v-for="venda in listaVenda" :key="venda.id">
-        <tr>
-          <td>{{ venda.data }}</td>
-          <td>{{ venda.valor }}</td>
-          <td>{{ venda.valorInverno }}</td>
-          <td>{{ venda.valorVerao }}</td>
-        </tr>
-      </tbody>
-    </table>
     <div class="container">
-      <div class="row">
-        <div class="col s5">
+      <div class="row center">
+        <div class="col s6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Valor total inverno</span>
@@ -63,7 +60,7 @@
           </div>
         </div>
 
-        <div class="col s5">
+        <div class="col s6">
           <div class="card grey darken-3">
             <div class="card-content white-text">
               <span class="card-title">Valor total verao</span>
@@ -71,10 +68,8 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col s5">
+        <div class="col s6">
           <div class="card blue-grey darken-4">
             <div class="card-content white-text">
               <span class="card-title">Comissao inverno</span>
@@ -83,7 +78,7 @@
           </div>
         </div>
 
-        <div class="col s5">
+        <div class="col s6">
           <div class="card blue-grey lighten-2">
             <div class="card-content white-text">
               <span class="card-title">Comissao verao</span>
@@ -92,7 +87,7 @@
           </div>
         </div>
 
-        <div class="col s10">
+        <div class="col s12 center">
           <div class="card teal darken-4">
             <div class="card-content white-text">
               <span class="card-title">Valor total acumulado</span>
@@ -156,7 +151,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
@@ -168,8 +162,5 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>

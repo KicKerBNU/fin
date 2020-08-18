@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Navbar></Navbar>
-      <router-link to="/">Home</router-link>
-      <router-link to="/fluxo">Fluxo</router-link>
-      <router-link to="/resumo">Resumo</router-link>
+      <Navbar>
+        <router-link to="/">Vendas</router-link>
+        <router-link to="/fluxo">Compras</router-link>
+        <router-link to="/fluxo">Fluxo</router-link>
+        <router-link to="/resumo">Resumo</router-link>
+      </Navbar>
     </div>
-    <router-view />
-    <div class="container">
+    <div class="conteudo">
       <Sidenav></Sidenav>
+      <router-view />
     </div>
   </div>
 </template>
@@ -30,4 +32,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@media screen and (min-width: 980px) {
+  .conteudo {
+    margin-left: 80px;
+  }
+}
+</style>
