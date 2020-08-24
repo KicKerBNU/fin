@@ -18,7 +18,6 @@
 <script>
 import Sidenav from "./components/SideNav";
 import Navbar from "./components/Navbar.vue";
-
 import M from "materialize-css";
 export default {
   name: "App",

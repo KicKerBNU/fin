@@ -13,6 +13,20 @@
       "valor": 200,
       "valorInverno": 100,
       "valorVerao": 100
+    },
+    {
+      "data": "05/08/2020",
+      "valor": 300,
+      "valorInverno": 150,
+      "valorVerao": 150,
+      "id": 3
+    },
+    {
+      "data": "06/08/2020",
+      "valor": 66,
+      "valorInverno": 33,
+      "valorVerao": 33,
+      "id": 4
     }
   ]
 }

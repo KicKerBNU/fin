@@ -4,26 +4,26 @@
     <div class="content">
       <div class="row">
         <div class="input-field col s3">
-          <input id="data_caixa" type="text" class="validate" />
+          <input id="data_caixa" type="text" class="validate" v-model="venda.data" />
           <label for="data_caixa">Data</label>
         </div>
         <div class="input-field col s3">
-          <input id="valor_caixa" type="text" class="validate" />
-          <label for="valor_caixa">Valor Total</label>
-        </div>
-        <div class="input-field col s3">
-          <input id="valor_inverno" type="text" class="validate" />
+          <input id="valor_inverno" type="text" class="validate" v-model="venda.valorInverno" />
           <label for="valor_inverno">Valor venda inverno</label>
         </div>
         <div class="input-field col s3">
-          <input id="valor_verao" type="text" class="validate" />
+          <input id="valor_verao" type="text" class="validate" v-model="venda.valorVerao" />
           <label for="valor_verao">Valor venda verao</label>
+        </div>
+        <div class="input-field col s3">
+          <input id="valor_caixa" type="text" class="validate" v-model="venda.valorTotal" />
+          <label for="valor_caixa">Valor Total</label>
         </div>
       </div>
       <div class="right-align col s12">
         <p>
-          <a class="btn-flat">Limpar</a>
-          <a class="btn waves-effect waves-light">Confirmar</a>
+          <a class="btn-flat" @click="limparVenda()">Limpar</a>
+          <a @click="adicionarVenda()" class="btn waves-effect waves-light">Confirmar</a>
         </p>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <thead>
           <tr>
             <th>DATA</th>
-            <th>VALOR</th>
+            <th>VALOR TOTAL</th>
             <th>VALOR INVERNO</th>
             <th>VALOR VERAO</th>
           </tr>
@@ -55,7 +55,7 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">Valor total inverno</span>
-              <p>{{ valorInverno }}</p>
+              <p>{{ vendasSomadasInverno }}</p>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
           <div class="card grey darken-3">
             <div class="card-content white-text">
               <span class="card-title">Valor total verao</span>
-              <p>{{ valorVerao }}</p>
+              <p>{{ vendasSomadasVerao }}</p>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
           <div class="card teal darken-4">
             <div class="card-content white-text">
               <span class="card-title">Valor total acumulado</span>
-              <p>{{ valorTotal }}</p>
+              <p>{{ vendasSomadas }}</p>
             </div>
           </div>
         </div>
@@ -102,50 +102,85 @@
 
 <script>
 import axios from "axios";
+import Materialize from "materialize-css";
+
 export default {
   name: "Vendas",
   data() {
     return {
       titulo: "Lançamento de vendas",
       listaVenda: [],
-      valorTotal: null,
-      valorInverno: null,
-      valorVerao: null,
+      vendasSomadas: null,
+      vendasSomadasInverno: null,
+      vendasSomadasVerao: null,
       comissaoVerao: null,
       comissaoInverno: null,
+      venda: {
+        id: Materialize.guid(),
+        data: null,
+        valorTotal: null,
+        valorInverno: null,
+        valorVerao: null,
+      },
     };
   },
   mounted() {
     this.atualizarValores();
   },
+  computed: {
+    valorTotal() {
+      return this.venda.valorInverno + this.venda.valorVerao;
+    },
+  },
+
   methods: {
+    limparVenda() {
+      this.venda.data = null;
+      this.venda.valorTotal = null;
+      this.venda.valorInverno = null;
+      this.venda.valorVerao = null;
+    },
+    adicionarVenda() {
+      var venda = {
+        data: this.venda.data,
+        valor: parseInt(this.venda.valorTotal),
+        valorInverno: parseInt(this.venda.valorInverno),
+        valorVerao: parseInt(this.venda.valorVerao),
+      };
+      axios.post(`http://localhost:3000/vendas/`, venda).then((resposta) => {
+        console.log("Produto adicionado com sucesso" + resposta);
+      });
+
+      this.listaVenda.push(venda);
+      this.limparVenda();
+    },
+    removerVenda() {},
     atualizarValores() {
       axios.get("http://localhost:3000/vendas").then((resposta) => {
         this.listaVenda = resposta.data;
+        console.log(resposta);
 
-        this.valorTotal = this.listaVenda.reduce(valorTotal, 0);
-        function valorTotal(total, item) {
+        this.vendasSomadas = this.listaVenda.reduce(vendasSomadas, 0);
+        function vendasSomadas(total, item) {
           return total + item.valor;
         }
 
-        this.valorInverno = this.listaVenda.reduce(valorTotalInverno, 0);
-        function valorTotalInverno(total, item) {
+        this.vendasSomadasInverno = this.listaVenda.reduce(
+          vendasSomadasInverno,
+          0
+        );
+        function vendasSomadasInverno(total, item) {
           return total + item.valorInverno;
         }
 
-        this.valorVerao = this.listaVenda.reduce(valorTotalVerao, 0);
-        function valorTotalVerao(total, item) {
+        this.vendasSomadasVerao = this.listaVenda.reduce(vendasSomadasVerao, 0);
+        function vendasSomadasVerao(total, item) {
           return total + item.valorVerao;
         }
 
-        this.comissaoVerao = this.valorVerao * 0.13;
-        this.comissaoInverno = this.valorInverno * 0.13;
+        this.comissaoVerao = this.vendasSomadasVerao * 0.13;
+        this.comissaoInverno = this.vendasSomadasInverno * 0.13;
       });
-    },
-  },
-  computed: {
-    atualizaLista() {
-      return this.valorTotal;
     },
   },
 };
