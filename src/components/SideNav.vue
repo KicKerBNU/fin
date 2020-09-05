@@ -3,27 +3,27 @@
     <div class="sidenav sidenav-fixed teal">
       <ul>
         <li class="pointer">
-          <a class="white-text" href="/">
+          <a>
+            <router-link to="/" class="white-text">Vendas</router-link>
             <i class="material-icons white-text">local_offer</i>
-            Vendas
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/compras">
+          <a>
+            <router-link to="/compras" class="white-text">Compras</router-link>
             <i class="material-icons white-text">shopping_cart</i>
-            Compras
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/resumo">
+          <a>
+            <router-link to="/resumo" class="white-text">Resumo</router-link>
             <i class="material-icons white-text">insert_chart</i>
-            Resumo
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/fluxo">
+          <a>
+            <router-link to="/fluxo" class="white-text">Fluxo</router-link>
             <i class="material-icons white-text">attach_money</i>
-            Fluxo
           </a>
         </li>
       </ul>
