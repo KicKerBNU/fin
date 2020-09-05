@@ -156,31 +156,36 @@ export default {
     },
     removerVenda() {},
     atualizarValores() {
-      axios.get("http://localhost:3000/vendas").then((resposta) => {
-        this.listaVenda = resposta.data;
-        console.log(resposta);
+      axios
+        .get("https://my-json-server.typicode.com/KicKerBNU/fin/vendas")
+        .then((resposta) => {
+          this.listaVenda = resposta.data;
+          console.log(resposta);
 
-        this.vendasSomadas = this.listaVenda.reduce(vendasSomadas, 0);
-        function vendasSomadas(total, item) {
-          return total + item.valor;
-        }
+          this.vendasSomadas = this.listaVenda.reduce(vendasSomadas, 0);
+          function vendasSomadas(total, item) {
+            return total + item.valor;
+          }
 
-        this.vendasSomadasInverno = this.listaVenda.reduce(
-          vendasSomadasInverno,
-          0
-        );
-        function vendasSomadasInverno(total, item) {
-          return total + item.valorInverno;
-        }
+          this.vendasSomadasInverno = this.listaVenda.reduce(
+            vendasSomadasInverno,
+            0
+          );
+          function vendasSomadasInverno(total, item) {
+            return total + item.valorInverno;
+          }
 
-        this.vendasSomadasVerao = this.listaVenda.reduce(vendasSomadasVerao, 0);
-        function vendasSomadasVerao(total, item) {
-          return total + item.valorVerao;
-        }
+          this.vendasSomadasVerao = this.listaVenda.reduce(
+            vendasSomadasVerao,
+            0
+          );
+          function vendasSomadasVerao(total, item) {
+            return total + item.valorVerao;
+          }
 
-        this.comissaoVerao = this.vendasSomadasVerao * 0.13;
-        this.comissaoInverno = this.vendasSomadasInverno * 0.13;
-      });
+          this.comissaoVerao = this.vendasSomadasVerao * 0.13;
+          this.comissaoInverno = this.vendasSomadasInverno * 0.13;
+        });
     },
   },
 };
