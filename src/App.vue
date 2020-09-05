@@ -3,7 +3,7 @@
     <div id="nav">
       <Navbar>
         <router-link to="/">Vendas</router-link>
-        <router-link to="/fluxo">Compras</router-link>
+        <router-link to="/compras">Compras</router-link>
         <router-link to="/fluxo">Fluxo</router-link>
         <router-link to="/resumo">Resumo</router-link>
       </Navbar>

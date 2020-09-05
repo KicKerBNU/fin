@@ -9,19 +9,19 @@
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/#/compras">
+          <a class="white-text" href="/compras">
             <i class="material-icons white-text">shopping_cart</i>
             Compras
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/#/resumo">
+          <a class="white-text" href="/resumo">
             <i class="material-icons white-text">insert_chart</i>
             Resumo
           </a>
         </li>
         <li class="pointer">
-          <a class="white-text" href="/#/fluxo">
+          <a class="white-text" href="/fluxo">
             <i class="material-icons white-text">attach_money</i>
             Fluxo
           </a>
