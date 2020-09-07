@@ -128,6 +128,7 @@ export default {
   },
   mounted() {
     this.atualizarValores();
+    Materialize.updateTextFields();
   },
   computed: {
     valorTotal() {
@@ -151,16 +152,16 @@ export default {
       };
       axios
         .post(
-          "https://my-json-server.typicode.com/KicKerBNU/fin/vendas/" +
+          "https://my-json-server.typicode.com/KicKerBNU/fin/vendas&" +
             this.mesAtual +
-            "/" +
+            "&" +
             this.anoAtual,
           venda
         )
         .then((resposta) => {
           if (!resposta) return;
           Materialize.toast({
-            html: "Produto adicionado com sucesso",
+            html: "Venda adicionada com sucesso",
             classes: "green darken-4",
           });
         });
@@ -171,16 +172,19 @@ export default {
     removerVenda() {},
     atualizarValores() {
       var d = new Date();
-      var mes = String(d.getMonth()).padStart(2, "0");
+      var dia = String(d.getDate()).padStart(2, "0");
+      var mes = String(d.getMonth() + 1).padStart(2, "0");
       var ano = String(d.getFullYear());
+
+      this.venda.data = dia + "/" + mes + "/" + ano;
       this.mesAtual = mes;
       this.anoAtual = ano;
 
       axios
         .get(
-          "https://my-json-server.typicode.com/KicKerBNU/fin/vendas/" +
+          "https://my-json-server.typicode.com/KicKerBNU/fin/vendas&" +
             mes +
-            "/" +
+            "&" +
             ano
         )
         .then((resposta) => {
