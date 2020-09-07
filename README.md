@@ -1,8 +1,7 @@
 # fin
 
 ## Deploy
-https://fin-t.herokuapp.com/#/
-
+https://fin-t.herokuapp.com/
 ## Project setup
 ```
 npm install
