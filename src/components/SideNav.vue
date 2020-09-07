@@ -26,23 +26,26 @@
         </a>
       </li>
     </ul>
+    <a data-target="slide-out" class="sidenav-trigger pointer grey-text">
+      <i class="material-icons">menu</i>
+    </a>
   </div>
 </template>
 
 <script>
-  export default {};
+export default {};
 </script>
 
 <style scoped>
-  .sidenav-fixed {
-    top: 64px;
-    width: 200px;
-    box-shadow: unset;
-  }
-  .sidenav li > a {
-    font-weight: normal;
-  }
-  .pointer {
-    cursor: pointer;
-  }
+.sidenav-fixed {
+  top: 64px;
+  width: 200px;
+  box-shadow: unset;
+}
+.sidenav li > a {
+  font-weight: normal;
+}
+.pointer {
+  cursor: pointer;
+}
 </style>

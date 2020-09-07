@@ -1,5 +1,5 @@
 {
-  "vendas": [
+  "vendas/08/2020": [
     {
       "id": 1,
       "data": "03/08/2020",
@@ -28,5 +28,13 @@
       "valorVerao": 33,
       "id": 4
     }
-  ]
+  ],
+  "vendas/09/2020": [
+    {
+      "id": 1,
+      "data": "07/09/2020",
+      "valor": 360,
+      "valorInverno": 0,
+      "valorVerao": 360
+    },
 }

@@ -1,24 +1,25 @@
 <template>
   <div>
-    <div class="navbar-fixed ">
+    <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper teal">
-          <a href="#!" class=" center brand-logo">FIN</a>
+          <a class="center brand-logo">FIN</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="">Ajuda</a></li>
-            <li><a href="">Contato</a></li>
+            <li>
+              <a href>Ajuda</a>
+            </li>
+            <li>
+              <a href>Contato</a>
+            </li>
           </ul>
         </div>
-        <a data-target="slide-out" class="sidenav-trigger pointer grey-text"
-          ><i class="material-icons">menu</i></a
-        >
       </nav>
     </div>
   </div>
 </template>
 
 <script>
-  export default {};
+export default {};
 </script>
 
 <style></style>
