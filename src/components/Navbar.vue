@@ -9,6 +9,9 @@
             <li><a href="">Contato</a></li>
           </ul>
         </div>
+        <a data-target="slide-out" class="sidenav-trigger pointer grey-text"
+          ><i class="material-icons">menu</i></a
+        >
       </nav>
     </div>
   </div>

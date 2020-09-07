@@ -175,7 +175,11 @@
             venda
           )
           .then((resposta) => {
-            console.log("Produto adicionado com sucesso" + resposta);
+            if (!resposta) return;
+            Materialize.toast({
+              html: "Produto adicionado com sucesso",
+              classes: "green darken-4",
+            });
           });
 
         this.listaVenda.push(venda);
@@ -187,7 +191,6 @@
           .get("https://my-json-server.typicode.com/KicKerBNU/fin/vendas")
           .then((resposta) => {
             this.listaVenda = resposta.data;
-            console.log(resposta);
 
             this.vendasSomadas = this.listaVenda.reduce(vendasSomadas, 0);
             function vendasSomadas(total, item) {
