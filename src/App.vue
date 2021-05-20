@@ -13,10 +13,12 @@
 <script>
   import Sidenav from "./components/SideNav";
   import Navbar from "./components/Navbar.vue";
+  import "./global.css";
   import M from "materialize-css";
   export default {
     name: "App",
     components: {
+
       Navbar,
       Sidenav,
     },

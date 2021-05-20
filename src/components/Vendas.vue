@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h5 class="center">{{ titulo }}</h5>
-    <div class="content">
+    <div class="content top">
       <div class="row">
         <div class="input-field col s12 m6 l3">
           <input id="data_caixa" type="text" class="validate" v-model="venda.data" />
